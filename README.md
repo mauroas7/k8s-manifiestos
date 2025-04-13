@@ -1,15 +1,15 @@
         DESPLIEGUE DE SITIO WEB ESTÁTICO EN KUBERNETES CON MINIKUBE
 
-Este proyecto consiste en el despliegue de un sitio web estático utilizando **Kubernetes** sobre **Minikube**, utilizando un `hostPath` para acceder al contenido local y servirlo desde un contenedor **Nginx**. Se emplea un `initContainer` para copiar los archivos desde el volumen al contenedor principal.
+Este proyecto consiste en el despliegue de un sitio web estático utilizando Kubernetes sobre Minikube, utilizando un `hostPath` para acceder al contenido local y servirlo desde un contenedor Nginx.
 El contenido de la página web (HTML, CSS e imagenes) se encuentra fuera del repositorio, en una carpeta local montada en el entorno de Minikube.
 
-Requisitos Previos:
+Requisitos previos:
 Esto va a depender del hardware de cada uno, pero en caso de usar WSL, debe tener instalado en su maquina:
 - Docker Engine: (https://docs.docker.com/engine/install/)
 - Minikube: (https://minikube.sigs.k8s.io/docs/start/)
 - Kubectl: (https://kubernetes.io/docs/tasks/tools/install-kubectl/
 
-Pasos para Ejecutar el Proyecto
+Pasos para ejecutar el proyecto
 
 1. Preparar entorno de trabajo
 
@@ -18,9 +18,9 @@ Pasos para Ejecutar el Proyecto
   - `k8s-paginaweb`: va a contener los archivos del sitio (index.html, style.css, assets)
   - `k8s-manifiestos`: va a contener los manifiestos YAML divididos en carpetas (pvc, deployment, service)
 
-2. Iniciar Minikube con volumen montado
+2. Iniciar minikube con volumen montado
 
-Se inició Minikube montando la carpeta web en la ruta esperada por el `hostPath`:
+Se inició minikube montando la carpeta web en la ruta esperada por el `hostPath`:
 
 minikube start --driver=docker \
   --mount \
