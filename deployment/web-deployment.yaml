@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: static-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: static-web
+  template:
+    metadata:
+      labels:
+        app: static-web
+    spec:
+      initContainers:
+        - name: init-copy
+          image: busybox
+          command: ["/bin/sh", "-c"]
+          args:
+            - |
+              echo "Copiando contenido..."
+              cp -r /mnt/static/. /usr/share/nginx/html
+          volumeMounts:
+            - name: source-volume
+              mountPath: /mnt/static
+            - name: html-volume
+              mountPath: /usr/share/nginx/html
+      containers:
+        - name: nginx
+          image: nginx
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: html-volume
+              mountPath: /usr/share/nginx/html
+      volumes:
+        - name: source-volume
+          persistentVolumeClaim:
+            claimName: static-content-pvc
+        - name: html-volume
+          emptyDir: {}
