@@ -40,20 +40,20 @@ Estructura final del proyecto deberia ser similar a esto:
           ├── deployment/
           └── service/
 
-4. Aplicación de manifiestos
+5. Aplicación de manifiestos
 En la terminal se deben colocar los siguientes comandos:
     kubectl apply -f pvc/static-content-pv.yaml
     kubectl apply -f pvc/static-content-pvc.yaml
     kubectl apply -f deployment/web-deployment.yaml
     kubectl apply -f service/web-service.yaml
 
-5. Verificación de contenido dentro del contenedor
+6. Verificación de contenido dentro del contenedor
     kubectl exec -it POD_NAME -- /bin/bash
     cd /usr/share/nginx/html
     ls -l
 Si se observan los archivos index.html, style.css, assets, quiere decir que está todo correcto.
 
-6. Visualización del sitio
+7. Visualización del sitio
 En la terminal se debe colocar el siguiente comando:
     minikube service static-web-service
 
