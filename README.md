@@ -4,7 +4,8 @@ Este proyecto consiste en el despliegue de un sitio web estático utilizando Kub
 El contenido de la página web (HTML, CSS e imagenes) se encuentra fuera del repositorio, en una carpeta local montada en el entorno de Minikube.
 
 Requisitos previos:
-Esto va a depender del hardware de cada uno, pero en caso de usar WSL, debe tener instalado en su maquina:
+Esto va a depender del hardware de cada uno. Este instructivo está diseñado para entornos Linux, por lo tanto se recomienda utilizar WSL.
+Para continuar debe tener instalado en su maquina:
 - Docker Engine: (https://docs.docker.com/engine/install/)
 - Minikube: (https://minikube.sigs.k8s.io/docs/start/)
 - Kubectl: (https://kubernetes.io/docs/tasks/tools/install-kubectl/
@@ -20,7 +21,22 @@ Pasos para ejecutar el proyecto
 
 2. Iniciar minikube con volumen montado
 
-Se inició minikube montando la carpeta web en la ruta esperada por el `hostPath`:
+Para que el contenido del sitio web esté disponible dentro del contenedor Nginx, es necesario que Minikube acceda a la carpeta local donde están los archivos (index.html, style.css, etc.).
+Esto se logra utilizando el parámetro --mount al iniciar Minikube.
+
+¿Qué dirección debo usar en --mount-string?
+
+        El formato es:
+--mount-string="RUTA_LOCAL_ABSOLUTA:RUTA_DENTRO_MINIKUBE"
+
+        Por ejemplo, si tus archivos están en:
+/home/mariano/actividad-k8s/k8s-paginaweb
+
+        y tu hostPath dentro del PersistentVolume apunta a:
+hostPath:
+  path: "/mnt/data/k8s-paginaweb"
+
+        Entonces el comando completo será:
 
 minikube start --driver=docker \
   --mount \
