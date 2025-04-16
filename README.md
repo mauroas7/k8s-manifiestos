@@ -44,7 +44,7 @@ Entonces el comando completo será:
         minikube start --driver=docker --mount-string="/home/nombre/actividad-k8s/k8s-paginaweb:/mnt/data/k8s-paginaweb"
 
 3. Crear los manifiestos.
-4. Esta es la parte mas tediosa, pero se deben crear los archivos .yaml necesarios para el desarrollo del proyecto. Algunos de estos van a ser:
+   Esta es la parte mas tediosa, pero se deben crear los archivos .yaml necesarios para el desarrollo del proyecto. Algunos de estos van a ser:
 
         deployment/web-deployment.yaml
         pvc/static-content-pv.yaml
