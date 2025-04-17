@@ -14,10 +14,15 @@ Pasos para ejecutar el proyecto
 
 🚀 1. Preparar entorno de trabajo.
 
-- Se creó una carpeta principal: `actividad-k8s`
-- Se organizaron dos subdirectorios:
+- Se debe crear una carpeta principal: `actividad-k8s`
+- Se deben organizar dos subdirectorios:
   - `k8s-paginaweb`: va a contener los archivos del sitio (index.html, style.css, assets)
   - `k8s-manifiestos`: va a contener los manifiestos YAML divididos en carpetas (pvc, deployment, service)
+El formato de la carpeta debe quedar de la siguiente manera:
+
+            actividad-k8s/
+              ├── k8s-paginaweb/          # Archivos estáticos
+              └── k8s-manifiestos/
 
 🚀 2. Iniciar minikube con volumen montado.
 
